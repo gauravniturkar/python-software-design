@@ -1,60 +1,72 @@
 # Python Software Design
 
-Practical examples of writing Python code that is easier to understand, test, and change.
+Learn how to write Python code that is **easy to understand, test and change**, explained in
+plain language with everyday analogies and small runnable examples.
 
-This repository explores software design through small examples and realistic backend scenarios. The focus is on understanding the problem a principle or pattern solves, the trade-offs it introduces, and when a simpler approach is enough.
+Every concept answers one question: **"When requirements change, how painful is it to update the code?"**
 
-## Project status
+## Repository structure
 
-This repository is being built incrementally, starting with SOLID principles. The roadmap below describes the intended scope; it does not imply that every topic has been implemented.
+```
+python-software-design/
+├── README.md
+├── oop/                     # Objects, encapsulation, inheritance, polymorphism, composition
+├── solid/                   # The five SOLID principles
+├── design-principles/       # DRY, KISS, YAGNI, separation of concerns
+├── interfaces/              # Duck typing, abstract base classes, protocols
+├── design-patterns/         # Strategy, Factory, Adapter, Observer, Decorator
+├── dependency-injection/    # Passing dependencies in instead of creating them
+├── architecture/            # Layered architecture, ports and adapters
+├── data-access/             # Repository and Unit of Work
+├── error-handling/          # Meaningful exceptions and error boundaries
+├── testable-design/         # Isolating side effects, fakes, pytest examples
+├── refactoring/             # Improving code without changing behaviour
+└── case-studies/            # Realistic scenarios combining everything
+```
 
-## SOLID principles
+## Learning path
 
-| Principle | Focus |
-| --- | --- |
-| Single Responsibility | Group code around one responsibility and reason to change. |
-| Open/Closed | Allow new behavior through extension without repeatedly changing stable code. |
-| Liskov Substitution | Ensure implementations can replace their abstractions without breaking expected behavior. |
-| Interface Segregation | Keep interfaces focused so consumers depend only on what they need. |
-| Dependency Inversion | Make high-level policy and low-level details depend on abstractions. |
+Follow the topics in this order. Each one builds on the ones before it.
 
-## Roadmap
-
-- **Object-oriented design:** encapsulation, polymorphism, composition, and inheritance.
-- **Design principles:** SOLID, DRY, KISS, YAGNI, and separation of concerns.
-- **Interfaces and contracts:** abstract base classes, protocols, and duck typing.
-- **Design patterns:** Strategy, Factory, Adapter, Observer, and Decorator.
-- **Dependency injection:** providing dependencies explicitly and replacing them in tests.
-- **Application architecture:** layered architecture and ports and adapters.
-- **Data access:** Repository and Unit of Work patterns.
-- **Error handling:** meaningful exceptions and clear error boundaries.
-- **Testable design:** isolating side effects and using lightweight fakes.
-- **Refactoring:** improving existing code while preserving its behavior.
+| # | Topic | In one sentence | Everyday analogy |
+| --- | --- | --- | --- |
+| 1 | [OOP](oop/) | Organise code around objects that hold data and behaviour. | A TV remote: buttons outside, electronics hidden inside. |
+| 2 | [Interfaces](interfaces/) | A contract: "anything with these methods can be used here." | A USB port accepts any USB device. |
+| 3 | [Design principles](design-principles/) | Simple rules of thumb: don't repeat yourself, keep it simple, don't build for imaginary needs. | Save a phone number once, not on ten sticky notes. |
+| 4 | [SOLID](solid/) | Five guidelines that keep classes focused and replaceable. | Chef cooks, cashier bills, and nobody does both jobs. |
+| 5 | [Dependency injection](dependency-injection/) | Ask for what you need instead of building it yourself. | Ingredients are delivered to the chef. |
+| 6 | [Design patterns](design-patterns/) | Named, proven solutions to common problems. | Recipes everyone recognises. |
+| 7 | [Error handling](error-handling/) | Raise specific errors and handle them at the right layer. | Dashboard warning lights, each with one clear meaning. |
+| 8 | [Testable design](testable-design/) | Keep logic separate from side effects so it's easy to test. | A flight simulator instead of a real crash. |
+| 9 | [Data access](data-access/) | Hide the database behind a clean, collection-like interface. | Ask the librarian instead of searching the shelves. |
+| 10 | [Architecture](architecture/) | Arrange the big pieces so business rules don't depend on tools. | A restaurant: waiters, chefs and the storeroom stay separate. |
+| 11 | [Refactoring](refactoring/) | Improve structure without changing behaviour, step by safe step. | Reorganising a kitchen: same meals, less mess. |
+| 12 | [Case studies](case-studies/) | Real backend scenarios that use everything together. | Notifications, data imports, file storage, checkout. |
 
 ## Example format
 
-Each example is intended to include:
+Each folder has a `README.md` with a plain-English explanation, plus `.py` files that follow the same shape:
 
-1. **Problem:** a concrete requirement or change that makes the original design difficult to work with.
-2. **Before:** an implementation that demonstrates the difficulty.
-3. **After:** a refactored implementation with a clear explanation.
-4. **Trade-offs:** what improves, what becomes more complex, and when the approach is unnecessary.
-5. **Usage:** instructions for running the example, with focused tests where useful.
+1. **Analogy:** an everyday picture of the idea.
+2. **Problem:** a concrete requirement that makes naive code painful.
+3. **Before:** code that shows the pain.
+4. **After:** the improved version, explained with comments.
+5. **Trade-offs:** what you gain, what it costs, and **when it's overkill**.
 
-## Planned case studies
+## How to run
 
-- **Notification service:** support multiple delivery channels through a common contract.
-- **Data import pipeline:** separate reading, validation, transformation, and persistence.
-- **File storage service:** switch storage implementations without changing business logic.
-- **Order processing:** separate business rules, persistence, and notifications.
+You only need Python 3.10+. Every example uses the standard library only.
 
-## How to use this repository
+```bash
+# Run any example
+python solid/02_open_closed.py
 
-Start with a topic's README, compare the before and after implementations, and follow its execution instructions as examples are added.
-
-Basic Python knowledge is helpful. Examples will introduce additional concepts where they are needed.
+# Run the tests (only these need pytest)
+pip install pytest
+pytest testable-design/ refactoring/
+```
 
 ## Design approach
 
-Use principles and patterns to solve concrete problems. Prefer clear Python code, keep abstractions purposeful, and explain the trade-offs behind each design decision.
-
+Principles and patterns are **tools, not goals**. Use one when it solves a problem you actually have.
+Prefer clear Python over clever abstractions, and always ask: *"Is the simpler version good enough?"*
